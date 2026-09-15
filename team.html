@@ -223,7 +223,7 @@
     /* ---------- Championships ---------- */
     .trophies {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 20px;
     }
 
@@ -233,13 +233,17 @@
       border-left: 3px solid var(--gold);
       border-radius: 8px;
       padding: 22px;
+    }
+
+    .trophy-head {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       align-items: center;
+      margin-bottom: 14px;
     }
 
     .trophy .cup {
-      font-size: 40px;
+      font-size: 36px;
       flex-shrink: 0;
     }
 
@@ -258,6 +262,32 @@
       font-weight: 700;
       color: var(--gold);
       white-space: nowrap;
+    }
+
+    .trophy-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 18px;
+      font-size: 13px;
+      color: var(--muted);
+      border-top: 1px dashed var(--border);
+      padding-top: 12px;
+      margin-bottom: 10px;
+    }
+
+    .trophy-meta .tag {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 11px;
+      margin-right: 4px;
+    }
+
+    .trophy .lore {
+      font-size: 13px;
+      color: var(--muted);
+      font-style: italic;
+      line-height: 1.5;
     }
 
     /* ---------- Table ---------- */
@@ -465,39 +495,105 @@
     <div class="trophies">
 
       <div class="trophy">
-        <div class="cup">&#127776;</div>
-        <div>
-          <h3>Surface of the Sun</h3>
-          <p class="event">2024 · LAN Finals</p>
+        <div class="trophy-head">
+          <div class="cup">&#127776;</div>
+          <div>
+            <h3>Surface of the Sun</h3>
+            <p class="event">2024 · LAN Finals</p>
+          </div>
+          <div class="place">1st</div>
         </div>
-        <div class="place">1st</div>
+        <div class="trophy-meta">
+          <span><span class="tag">Venue</span>The photosphere, 93M mi out</span>
+          <span><span class="tag">Format</span>Best of 5, single elim</span>
+          <span><span class="tag">Prize</span>A golden feather</span>
+        </div>
+        <p class="lore">Only team to ever win a LAN while literally on fire. The feather survived; our eyebrows did not.</p>
       </div>
 
       <div class="trophy">
-        <div class="cup">&#127769;</div>
-        <div>
-          <h3>Dark Side of the Moon</h3>
-          <p class="event">2023 · Grand Final</p>
+        <div class="trophy-head">
+          <div class="cup">&#127769;</div>
+          <div>
+            <h3>Dark Side of the Moon</h3>
+            <p class="event">2023 · Grand Final</p>
+          </div>
+          <div class="place">1st</div>
         </div>
-        <div class="place">1st</div>
+        <div class="trophy-meta">
+          <span><span class="tag">Venue</span>Mare Imbrium, lunar farside</span>
+          <span><span class="tag">Format</span>Best of 7, round robin</span>
+          <span><span class="tag">Prize</span>One (1) moon rock</span>
+        </div>
+        <p class="lore">Swept the final 4–0 under total darkness. Nobody saw it coming — literally, nobody had line of sight.</p>
       </div>
 
       <div class="trophy">
-        <div class="cup">&#127754;</div>
-        <div>
-          <h3>Bottom of the Ocean</h3>
-          <p class="event">2022 · Playoffs</p>
+        <div class="trophy-head">
+          <div class="cup">&#127754;</div>
+          <div>
+            <h3>Bottom of the Ocean</h3>
+            <p class="event">2022 · Playoffs</p>
+          </div>
+          <div class="place">2nd</div>
         </div>
-        <div class="place">2nd</div>
+        <div class="trophy-meta">
+          <span><span class="tag">Venue</span>The Mariana Trench, 10,994m</span>
+          <span><span class="tag">Format</span>Double elimination</span>
+          <span><span class="tag">Prize</span>A fist-sized pearl</span>
+        </div>
+        <p class="lore">Cracked under the pressure of a thousand atmospheres in the final. Silver at that depth still glows.</p>
       </div>
 
       <div class="trophy">
-        <div class="cup">&#127979;</div>
-        <div>
-          <h3>Mordor</h3>
-          <p class="event">2021 · Opening Season</p>
+        <div class="trophy-head">
+          <div class="cup">&#127979;</div>
+          <div>
+            <h3>Mordor</h3>
+            <p class="event">2021 · Opening Season</p>
+          </div>
+          <div class="place">3rd</div>
         </div>
-        <div class="place">3rd</div>
+        <div class="trophy-meta">
+          <span><span class="tag">Venue</span>Slopes of Mount Doom</span>
+          <span><span class="tag">Format</span>Best of 3, single elim</span>
+          <span><span class="tag">Prize</span>One (1) Ring — not for us</span>
+        </div>
+        <p class="lore">Marched to the lava pools before the Ring decided it preferred the other team. We remain ring-free.</p>
+      </div>
+
+      <div class="trophy">
+        <div class="trophy-head">
+          <div class="cup">&#127929;</div>
+          <div>
+            <h3>Picard Day Curling Championship</h3>
+            <p class="event">2025 · Starfleet Sanctioned</p>
+          </div>
+          <div class="place">1st</div>
+        </div>
+        <div class="trophy-meta">
+          <span><span class="tag">Venue</span>Holodeck 4, USS Enterprise</span>
+          <span><span class="tag">Format</span>Round robin, 10 ends</span>
+          <span><span class="tag">Prize</span>An engraved teacup</span>
+        </div>
+        <p class="lore">We curled so well the captain said "make it so" — and the judge took it as the official call.</p>
+      </div>
+
+      <div class="trophy">
+        <div class="trophy-head">
+          <div class="cup">&#127760;</div>
+          <div>
+            <h3>Pangaea Continental Championship</h3>
+            <p class="event">250,000,000 BC · we showed up early</p>
+          </div>
+          <div class="place">1st</div>
+        </div>
+        <div class="trophy-meta">
+          <span><span class="tag">Venue</span>Pangaea, Triassic period</span>
+          <span><span class="tag">Format</span>Best of 3 (one supercontinent)</span>
+          <span><span class="tag">Prize</span>A petrified trophy</span>
+        </div>
+        <p class="lore">Time travel agency booked us 250M years too early, so we won before we got there. Trophy arrived fossilized.</p>
       </div>
 
     </div>
@@ -527,56 +623,56 @@
         <tbody>
           <tr>
             <td>Sep 08</td>
-            <td>NA Open</td>
+            <td>Surface of the Sun</td>
             <td class="opponent">Eclipse</td>
             <td>3 – 1</td>
             <td><span class="result win">Win</span></td>
           </tr>
           <tr>
             <td>Sep 01</td>
-            <td>NA Open</td>
+            <td>Surface of the Sun</td>
             <td class="opponent">Nightfall</td>
             <td>2 – 2</td>
             <td><span class="result draw">Draw</span></td>
           </tr>
           <tr>
             <td>Aug 25</td>
-            <td>NA Open</td>
+            <td>Picard Day Curling</td>
             <td class="opponent">Golden Dawn</td>
             <td>3 – 0</td>
             <td><span class="result win">Win</span></td>
           </tr>
           <tr>
             <td>Aug 18</td>
-            <td>Summer Circuit</td>
+            <td>Dark Side of the Moon</td>
             <td class="opponent">Titanfall</td>
             <td>1 – 3</td>
             <td><span class="result loss">Loss</span></td>
           </tr>
           <tr>
             <td>Aug 11</td>
-            <td>Summer Circuit</td>
+            <td>Dark Side of the Moon</td>
             <td class="opponent">Aurora</td>
             <td>3 – 2</td>
             <td><span class="result win">Win</span></td>
           </tr>
           <tr>
             <td>Aug 04</td>
-            <td>Summer Circuit</td>
+            <td>Bottom of the Ocean</td>
             <td class="opponent">Nightfall</td>
             <td>2 – 2</td>
             <td><span class="result draw">Draw</span></td>
           </tr>
           <tr>
             <td>Jul 28</td>
-            <td>Summer Circuit</td>
+            <td>Mordor</td>
             <td class="opponent">Vortex</td>
             <td>0 – 3</td>
             <td><span class="result loss">Loss</span></td>
           </tr>
           <tr>
             <td>Jul 21</td>
-            <td>Summer Circuit</td>
+            <td>Mordor</td>
             <td class="opponent">Eclipse</td>
             <td>3 – 1</td>
             <td><span class="result win">Win</span></td>
