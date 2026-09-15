@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sons of Icarus — Team</title>
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --panel: #141414;
+      --card: #1b1b1b;
+      --border: #2a2a2a;
+      --gold: #d4a437;
+      --gold-dark: #a97f23;
+      --text: #f2f2f2;
+      --muted: #9a9a9a;
+      --green: #3fbf6f;
+      --red: #e05050;
+      --gray: #808080;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* ---------- Nav ---------- */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 40px;
+      height: 64px;
+      background: rgba(10, 10, 10, 0.92);
+      border-bottom: 1px solid var(--border);
+      backdrop-filter: blur(8px);
+    }
+
+    nav .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    nav .brand img { height: 36px; width: auto; }
+
+    nav .brand span { color: var(--gold); }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 28px;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--gold); }
+
+    /* ---------- Hero ---------- */
+    header.hero {
+      text-align: center;
+      padding: 90px 20px 60px;
+      background:
+        radial-gradient(ellipse at 50% -20%, rgba(212, 164, 55, 0.18), transparent 60%),
+        var(--bg);
+      border-bottom: 1px solid var(--border);
+    }
+
+    header.hero img.logo {
+      height: 120px;
+      width: auto;
+      margin-bottom: 24px;
+    }
+
+    header.hero h1 {
+      font-size: 44px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: var(--gold);
+    }
+
+    header.hero p.tagline {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    header.hero p.sub {
+      margin: 24px auto 0;
+      max-width: 640px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* ---------- Section shell ---------- */
+    section {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 64px 24px;
+    }
+
+    section h2 {
+      text-align: center;
+      font-size: 28px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    section h2::after {
+      content: "";
+      display: block;
+      width: 48px;
+      height: 3px;
+      margin: 14px auto 0;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    section .section-intro {
+      text-align: center;
+      color: var(--muted);
+      font-size: 14px;
+      margin: 12px 0 40px;
+    }
+
+    /* ---------- Roster ---------- */
+    .roster {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 24px;
+    }
+
+    .player {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: transform 0.2s, border-color 0.2s;
+    }
+
+    .player:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+
+    .avatar {
+      width: 84px;
+      height: 84px;
+      margin: 0 auto 16px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--bg);
+      background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    }
+
+    .player h3 {
+      font-size: 18px;
+      letter-spacing: 1px;
+    }
+
+    .player .role {
+      color: var(--gold);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin: 4px 0 14px;
+    }
+
+    .player .realname {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 14px;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      border-top: 1px solid var(--border);
+      padding-top: 14px;
+    }
+
+    .stats .stat b {
+      display: block;
+      font-size: 18px;
+      color: var(--text);
+    }
+
+    .stats .stat span {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 1px;
+    }
+
+    /* ---------- Championships ---------- */
+    .trophies {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+    }
+
+    .trophy {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--gold);
+      border-radius: 8px;
+      padding: 22px;
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .trophy .cup {
+      font-size: 40px;
+      flex-shrink: 0;
+    }
+
+    .trophy h3 {
+      font-size: 17px;
+    }
+
+    .trophy .event {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .trophy .place {
+      margin-left: auto;
+      text-align: right;
+      font-weight: 700;
+      color: var(--gold);
+      white-space: nowrap;
+    }
+
+    /* ---------- Table ---------- */
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      background: var(--panel);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 640px;
+    }
+
+    th, td {
+      padding: 14px 18px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    thead th {
+      background: var(--card);
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+
+    tbody tr:hover { background: var(--card); }
+
+    td.opponent { font-weight: 600; }
+
+    .result {
+      display: inline-block;
+      min-width: 84px;
+      text-align: center;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .result.win  { background: rgba(63, 191, 111, 0.15); color: var(--green); }
+    .result.draw { background: rgba(128, 128, 128, 0.18); color: var(--gray); }
+    .result.loss { background: rgba(224, 80, 80, 0.15); color: var(--red); }
+
+    /* Season summary chips */
+    .record {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .record .chip {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 12px 26px;
+      text-align: center;
+    }
+
+    .record .chip b {
+      display: block;
+      font-size: 26px;
+    }
+
+    .record .chip.win b  { color: var(--green); }
+    .record .chip.draw b { color: var(--gray); }
+    .record .chip.loss b { color: var(--red); }
+
+    .record .chip span {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: var(--muted);
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 13px;
+      letter-spacing: 1px;
+    }
+
+    footer .brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+
+    footer .brand img { height: 28px; }
+
+    footer .brand span { color: var(--gold); font-weight: 700; }
+
+    @media (max-width: 640px) {
+      nav { padding: 0 16px; }
+      nav ul { gap: 16px; }
+      header.hero h1 { font-size: 30px; letter-spacing: 3px; }
+      header.hero { padding: 60px 16px 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="brand">
+      <img src="soi-logo2.png" alt="Sons of Icarus">
+      <span>Sons of Icarus</span>
+    </div>
+    <ul>
+      <li><a href="#roster">Roster</a></li>
+      <li><a href="#championships">Championships</a></li>
+      <li><a href="#record">Record</a></li>
+    </ul>
+  </nav>
+
+  <header class="hero">
+    <img class="logo" src="soi-logo2.png" alt="Sons of Icarus logo">
+    <h1>Sons of Icarus</h1>
+    <p class="tagline">Fly Close, Blaze of Glory</p>
+    <p class="sub">
+      A four-player competitive team built on discipline, chemistry, and nerve.
+      Since 2021 we have climbed from open qualifiers to the top of the region —
+      and we're still climbing.
+    </p>
+  </header>
+
+  <section id="roster">
+    <h2>The Roster</h2>
+    <p class="section-intro">Four players. One flight plan.</p>
+    <div class="roster">
+
+      <div class="player">
+        <div class="avatar">I</div>
+        <h3>Icarus</h3>
+        <p class="role">Captain / IGL</p>
+        <p class="realname">Alex Mercer</p>
+        <div class="stats">
+          <div class="stat"><b>1.28</b><span>Rating</span></div>
+          <div class="stat"><b>3.1</b><span>K/D</span></div>
+          <div class="stat"><b>7 yrs</b><span>Exp</span></div>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="avatar">S</div>
+        <h3>Sol</h3>
+        <p class="role">Entry</p>
+        <p class="realname">Diego Ramírez</p>
+        <div class="stats">
+          <div class="stat"><b>1.19</b><span>Rating</span></div>
+          <div class="stat"><b>2.7</b><span>K/D</span></div>
+          <div class="stat"><b>5 yrs</b><span>Exp</span></div>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="avatar">E</div>
+        <h3>Ember</h3>
+        <p class="role">Support</p>
+        <p class="realname">Maya Chen</p>
+        <div class="stats">
+          <div class="stat"><b>1.14</b><span>Rating</span></div>
+          <div class="stat"><b>1.9</b><span>K/D</span></div>
+          <div class="stat"><b>6 yrs</b><span>Exp</span></div>
+        </div>
+      </div>
+
+      <div class="player">
+        <div class="avatar">V</div>
+        <h3>Vanta</h3>
+        <p class="role">Anchor</p>
+        <p class="realname">Owen Kirk</p>
+        <div class="stats">
+          <div class="stat"><b>1.22</b><span>Rating</span></div>
+          <div class="stat"><b>2.4</b><span>K/D</span></div>
+          <div class="stat"><b>4 yrs</b><span>Exp</span></div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="championships">
+    <h2>Championships</h2>
+    <p class="section-intro">Hardware collected along the way.</p>
+    <div class="trophies">
+
+      <div class="trophy">
+        <div class="cup">&#127776;</div>
+        <div>
+          <h3>Surface of the Sun</h3>
+          <p class="event">2024 · LAN Finals</p>
+        </div>
+        <div class="place">1st</div>
+      </div>
+
+      <div class="trophy">
+        <div class="cup">&#127769;</div>
+        <div>
+          <h3>Dark Side of the Moon</h3>
+          <p class="event">2023 · Grand Final</p>
+        </div>
+        <div class="place">1st</div>
+      </div>
+
+      <div class="trophy">
+        <div class="cup">&#127754;</div>
+        <div>
+          <h3>Bottom of the Ocean</h3>
+          <p class="event">2022 · Playoffs</p>
+        </div>
+        <div class="place">2nd</div>
+      </div>
+
+      <div class="trophy">
+        <div class="cup">&#127979;</div>
+        <div>
+          <h3>Mordor</h3>
+          <p class="event">2021 · Opening Season</p>
+        </div>
+        <div class="place">3rd</div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="record">
+    <h2>Win / Draw / Loss</h2>
+    <p class="section-intro">2025 season summary</p>
+
+    <div class="record">
+      <div class="chip win"><b>22</b><span>Wins</span></div>
+      <div class="chip draw"><b>5</b><span>Draws</span></div>
+      <div class="chip loss"><b>9</b><span>Losses</span></div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Event</th>
+            <th>Opponent</th>
+            <th>Score</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sep 08</td>
+            <td>NA Open</td>
+            <td class="opponent">Eclipse</td>
+            <td>3 – 1</td>
+            <td><span class="result win">Win</span></td>
+          </tr>
+          <tr>
+            <td>Sep 01</td>
+            <td>NA Open</td>
+            <td class="opponent">Nightfall</td>
+            <td>2 – 2</td>
+            <td><span class="result draw">Draw</span></td>
+          </tr>
+          <tr>
+            <td>Aug 25</td>
+            <td>NA Open</td>
+            <td class="opponent">Golden Dawn</td>
+            <td>3 – 0</td>
+            <td><span class="result win">Win</span></td>
+          </tr>
+          <tr>
+            <td>Aug 18</td>
+            <td>Summer Circuit</td>
+            <td class="opponent">Titanfall</td>
+            <td>1 – 3</td>
+            <td><span class="result loss">Loss</span></td>
+          </tr>
+          <tr>
+            <td>Aug 11</td>
+            <td>Summer Circuit</td>
+            <td class="opponent">Aurora</td>
+            <td>3 – 2</td>
+            <td><span class="result win">Win</span></td>
+          </tr>
+          <tr>
+            <td>Aug 04</td>
+            <td>Summer Circuit</td>
+            <td class="opponent">Nightfall</td>
+            <td>2 – 2</td>
+            <td><span class="result draw">Draw</span></td>
+          </tr>
+          <tr>
+            <td>Jul 28</td>
+            <td>Summer Circuit</td>
+            <td class="opponent">Vortex</td>
+            <td>0 – 3</td>
+            <td><span class="result loss">Loss</span></td>
+          </tr>
+          <tr>
+            <td>Jul 21</td>
+            <td>Summer Circuit</td>
+            <td class="opponent">Eclipse</td>
+            <td>3 – 1</td>
+            <td><span class="result win">Win</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brand">
+      <img src="soi-logo2.png" alt="Sons of Icarus">
+      <span>Sons of Icarus</span>
+    </div>
+    <p>Fly Close, Blaze of Glory</p>
+  </footer>
+
+</body>
+</html>
