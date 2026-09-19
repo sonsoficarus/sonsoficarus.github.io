@@ -192,7 +192,7 @@ section h2 {
 section h2::after {
   content: "";
   display: block;
-  width: 500px;
+  width: 50%;
   height: 3px;
   margin: 14px auto 0;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
