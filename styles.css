@@ -83,6 +83,27 @@ nav a {
 
 nav a:hover { color: var(--gold); }
 
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 40px;
+  height: 40px;
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 1px;
+}
+
 /* ---------- Theme toggle ---------- */
 .theme-toggle {
   display: flex;
@@ -377,21 +398,14 @@ tbody tr:hover { background: var(--card); }
 
 td.opponent { font-weight: 600; }
 
-.result {
-  display: inline-block;
-  min-width: 84px;
+td.score {
   text-align: center;
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 1px;
-  text-transform: uppercase;
 }
 
-.result.win  { background: rgba(63, 191, 111, 0.15); color: var(--green); }
-.result.draw { background: rgba(128, 128, 128, 0.18); color: var(--gray); }
-.result.loss { background: rgba(224, 80, 80, 0.15); color: var(--red); }
+td.score.win  { background: rgba(63, 191, 111, 0.15); color: var(--green); }
+td.score.draw { background: rgba(128, 128, 128, 0.18); color: var(--gray); }
+td.score.loss { background: rgba(224, 80, 80, 0.15); color: var(--red); }
 
 /* Season summary chips */
 .record {
@@ -453,4 +467,29 @@ footer .brand span { color: var(--gold); font-weight: 700; }
   nav ul { gap: 16px; }
   header.hero h1 { font-size: 30px; letter-spacing: 3px; }
   header.hero { padding: 60px 16px 40px; }
+  th:nth-child(3), td:nth-child(3) { display: none; }
+  table { min-width: 0; }
+}
+
+@media (max-width: 599px) {
+  nav .brand { display: none; }
+  .nav-toggle { display: flex; }
+  nav ul {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    background: var(--nav-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 24px;
+  }
+  nav ul.open { display: block; }
+  nav ul li a {
+    display: block;
+    padding: 12px 0;
+  }
+  header.hero img.logo { height: 60px; }
 }
