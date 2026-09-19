@@ -275,7 +275,7 @@ section .section-intro {
 /* ---------- Championships ---------- */
 .trophies {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 20px;
 }
 
@@ -285,13 +285,17 @@ section .section-intro {
   border-left: 3px solid var(--gold);
   border-radius: 8px;
   padding: 22px;
+}
+
+.trophy-head {
   display: flex;
-  gap: 16px;
+  gap: 14px;
   align-items: center;
+  margin-bottom: 14px;
 }
 
 .trophy .cup {
-  font-size: 40px;
+  font-size: 36px;
   flex-shrink: 0;
 }
 
@@ -310,6 +314,32 @@ section .section-intro {
   font-weight: 700;
   color: var(--gold);
   white-space: nowrap;
+}
+
+.trophy-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 18px;
+  font-size: 13px;
+  color: var(--muted);
+  border-top: 1px dashed var(--border);
+  padding-top: 12px;
+  margin-bottom: 10px;
+}
+
+.trophy-meta .tag {
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 11px;
+  margin-right: 4px;
+}
+
+.trophy .lore {
+  font-size: 13px;
+  color: var(--muted);
+  font-style: italic;
+  line-height: 1.5;
 }
 
 /* ---------- Table ---------- */
