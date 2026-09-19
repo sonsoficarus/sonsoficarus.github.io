@@ -86,12 +86,14 @@ nav a:hover { color: var(--gold); }
 .nav-toggle {
   display: none;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 5px;
   width: 40px;
   height: 40px;
+  padding: 0;
   background: transparent;
-  border: 1px solid var(--border);
+  border: 1px solid var(--gold);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -100,7 +102,7 @@ nav a:hover { color: var(--gold); }
   display: block;
   width: 20px;
   height: 2px;
-  background: var(--text);
+  background: var(--gold);
   border-radius: 1px;
 }
 
