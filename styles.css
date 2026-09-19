@@ -239,7 +239,8 @@ section .section-intro {
 }
 
 .stats {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   justify-content: center;
   gap: 20px;
   border-top: 1px solid var(--border);
