@@ -32,10 +32,24 @@
     });
   }
 
+  function initNav() {
+    var toggle = document.querySelector('.nav-toggle');
+    var menu = document.querySelector('nav ul');
+    if (!toggle || !menu) { return; }
+    toggle.addEventListener('click', function () {
+      var open = menu.classList.toggle('open');
+      toggle.classList.toggle('active', open);
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  }
+
   Promise.all([
     load('nav', 'nav.html'),
     load('footer', 'footer.html')
-  ]).then(initTheme).catch(function (err) {
+  ]).then(function () {
+    initNav();
+    initTheme();
+  }).catch(function (err) {
     console.error(err);
   });
 })();
