@@ -465,18 +465,17 @@ footer .brand img { height: 28px; }
 footer .brand span { color: var(--gold); font-weight: 700; }
 
 /* ---------- Sponsors ---------- */
-footer .brand span { color: var(--gold); font-weight: 700; }
-
-/* ---------- Sponsors ---------- */
 .sponsors {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 }
 
 .sponsors img {
   display: block;
-  width: min(15vw, 80px) !important;
-  height: auto !important;
+  width: 512px;
+  max-width: 100%;
+  height: auto;
   opacity: 0.85;
   transition: opacity 0.2s;
 }
