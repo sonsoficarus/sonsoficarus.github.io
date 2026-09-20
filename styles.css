@@ -465,29 +465,23 @@ footer .brand img { height: 28px; }
 footer .brand span { color: var(--gold); font-weight: 700; }
 
 /* ---------- Sponsors ---------- */
-footer .brand span { color: var(--gold); font-weight: 700; }
-
-/* ---------- Sponsors ---------- */
 .sponsors {
-  text-align: center;
-  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.sponsors > a img {
-  max-height: 200px;
-  width: auto;
+.sponsors img {
+  display: block;
+  width: 512px;
+  max-width: 100%;
+  height: auto;
   opacity: 0.85;
   transition: opacity 0.2s;
 }
 
-.sponsors > a:hover img {
+.sponsors img:hover {
   opacity: 1;
-}
-
-@media (max-width: 599px) {
-  .sponsors > a img {
-    max-height: 40px;
-  }
 }
 
 @media (max-width: 640px) {
