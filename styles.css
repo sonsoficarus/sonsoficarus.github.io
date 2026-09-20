@@ -464,6 +464,32 @@ footer .brand img { height: 28px; }
 
 footer .brand span { color: var(--gold); font-weight: 700; }
 
+/* ---------- Sponsors ---------- */
+footer .brand span { color: var(--gold); font-weight: 700; }
+
+/* ---------- Sponsors ---------- */
+.sponsors {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.sponsors > a img {
+  max-height: 200px;
+  width: auto;
+  opacity: 0.85;
+  transition: opacity 0.2s;
+}
+
+.sponsors > a:hover img {
+  opacity: 1;
+}
+
+@media (max-width: 599px) {
+  .sponsors > a img {
+    max-height: 40px;
+  }
+}
+
 @media (max-width: 640px) {
   nav { padding: 0 16px; }
   nav ul { gap: 16px; }
