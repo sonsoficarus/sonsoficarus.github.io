@@ -18,7 +18,9 @@ body.light {
   --bg: #e9e6e0;
   --panel: #ffffff;
   --card: #f4f2ec;
-  --border: #d7d2c6;
+  --border: #c9c3b4;
+  --gold: #8a6d1f;
+  --gold-dark: #6d5416;
   --text: #1a1a1a;
   --muted: #5c5c5c;
   --nav-bg: rgba(255, 255, 255, 0.9);
@@ -198,13 +200,34 @@ section h2::after {
   height: 3px;
   margin: 14px auto 0;
   background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  border-radius: 2px;
 }
 
 section .section-intro {
   text-align: center;
   color: var(--muted);
   font-size: 14px;
+  font-weight: 700;
   margin: 12px 0 40px;
+}
+
+.section-header {
+  width: fit-content;
+  margin-inline: auto;
+  background: rgba(20, 20, 20, 0.88);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px 24px;
+  margin-bottom: 28px;
+}
+
+body.light .section-header {
+  background: rgba(255, 255, 255, 0.88);
+}
+
+body.light .section-intro {
+  color: #3d3d3d;
+  font-size: 15px;
 }
 
 /* ---------- Roster ---------- */
