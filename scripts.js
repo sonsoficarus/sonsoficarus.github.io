@@ -1,4 +1,18 @@
 (function () {
+  function initAnalytics() {
+    var measurementId = 'G-0KL870ZXLB';
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag('js', new Date());
+    gtag('config', measurementId);
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://www.googletagmanager.com/gtag/js?id=' + measurementId;
+    document.head.appendChild(script);
+  }
+
+  initAnalytics();
+
   function load(id, url) {
     return fetch(url)
       .then(function (r) {
