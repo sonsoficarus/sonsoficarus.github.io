@@ -31,8 +31,11 @@ body.light {
 
 html { scroll-behavior: smooth; }
 
+[id] { scroll-margin-top: 80px; }
+
 body {
   font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+  padding-top: 64px;
   background-color: var(--bg);
   background-image: var(--body-img);
   background-repeat: repeat;
@@ -42,8 +45,10 @@ body {
 
 /* ---------- Nav ---------- */
 nav {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 100;
   display: flex;
   align-items: center;
