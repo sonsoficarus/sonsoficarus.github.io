@@ -22,6 +22,12 @@
   td.mine .num { color: #ffe1a0; }
   .num { color: #8a97a5; font-size: 0.8em; vertical-align: middle; }
   .vs { color: #6b7683; font-size: 0.8em; }
+  tr.next td, tr.next th { background: #2b2618; }
+  tr.next th { color: #ffd94d; }
+  .next-badge { display: inline-block; background: #7a5c00; color: #fff;
+                border: 1px solid #e6a800; border-radius: 4px;
+                font-size: 0.7rem; font-weight: 700; padding: 1px 6px;
+                margin-left: 6px; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -31,45 +37,61 @@
 <table>
 <thead><tr><th>Date</th><th>Time</th><th>Ice 1</th><th>Ice 2</th><th>Ice 3</th><th>Ice 4</th></tr></thead>
 <tbody>
-<tr><th rowspan="2">Mon Nov 2, 2026</th><td class="time">6:30</td><td>Wood <span class="vs">vs</span> Frizzell</td><td>Kennedy <span class="vs">vs</span> MacFadyen</td><td>Rock Bottom <span class="vs">vs</span> Stewart</td><td>McCardle <span class="vs">vs</span> Arsenault</td></tr>
+<tr data-date="2026-11-02"><th rowspan="2">Mon Nov 2, 2026</th><td class="time">6:30</td><td>Wood <span class="vs">vs</span> Frizzell</td><td>Kennedy <span class="vs">vs</span> MacFadyen</td><td>Rock Bottom <span class="vs">vs</span> Stewart</td><td>McCardle <span class="vs">vs</span> Arsenault</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>Ferguson <span class="vs">vs</span> Baglole</td><td class="mine">Eagan <span class="vs">vs</span> Sons of Icarus</td><td>Griffiths <span class="vs">vs</span> MacDonald</td><td>Forrest <span class="vs">vs</span> Foster</td></tr>
-<tr class="myrow"><th rowspan="2">Mon Nov 9, 2026</th><td class="time">6:30</td><td>Eagan <span class="vs">vs</span> Stewart</td><td>Griffiths <span class="vs">vs</span> Baglole</td><td>Rock Bottom <span class="vs">vs</span> MacFadyen</td><td class="mine">Sons of Icarus <span class="vs">vs</span> MacDonald</td></tr>
+<tr data-date="2026-11-09" class="myrow"><th rowspan="2">Mon Nov 9, 2026</th><td class="time">6:30</td><td>Eagan <span class="vs">vs</span> Stewart</td><td>Griffiths <span class="vs">vs</span> Baglole</td><td>Rock Bottom <span class="vs">vs</span> MacFadyen</td><td class="mine">Sons of Icarus <span class="vs">vs</span> MacDonald</td></tr>
 <tr><td class="time">8:15</td><td>McCardle <span class="vs">vs</span> Forrest</td><td>Wood <span class="vs">vs</span> Arsenault</td><td>Kennedy <span class="vs">vs</span> Frizzell</td><td>Ferguson <span class="vs">vs</span> Foster</td></tr>
-<tr><th rowspan="2">Mon Nov 16, 2026</th><td class="time">6:30</td><td>Griffiths <span class="vs">vs</span> Foster</td><td>Rock Bottom <span class="vs">vs</span> Frizzell</td><td>McCardle <span class="vs">vs</span> Ferguson</td><td>Forrest <span class="vs">vs</span> Arsenault</td></tr>
+<tr data-date="2026-11-16"><th rowspan="2">Mon Nov 16, 2026</th><td class="time">6:30</td><td>Griffiths <span class="vs">vs</span> Foster</td><td>Rock Bottom <span class="vs">vs</span> Frizzell</td><td>McCardle <span class="vs">vs</span> Ferguson</td><td>Forrest <span class="vs">vs</span> Arsenault</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>Wood <span class="vs">vs</span> Kennedy</td><td>MacDonald <span class="vs">vs</span> Stewart</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Baglole</td><td>Eagan <span class="vs">vs</span> MacFadyen</td></tr>
-<tr class="myrow"><th rowspan="2">Mon Nov 23, 2026</th><td class="time">6:30</td><td>MacDonald <span class="vs">vs</span> MacFadyen</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Foster</td><td>Kennedy <span class="vs">vs</span> Arsenault</td><td>Stewart <span class="vs">vs</span> Baglole</td></tr>
+<tr data-date="2026-11-23" class="myrow"><th rowspan="2">Mon Nov 23, 2026</th><td class="time">6:30</td><td>MacDonald <span class="vs">vs</span> MacFadyen</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Foster</td><td>Kennedy <span class="vs">vs</span> Arsenault</td><td>Stewart <span class="vs">vs</span> Baglole</td></tr>
 <tr><td class="time">8:15</td><td>Eagan <span class="vs">vs</span> Frizzell</td><td>Forrest <span class="vs">vs</span> Ferguson</td><td>Wood <span class="vs">vs</span> Rock Bottom</td><td>McCardle <span class="vs">vs</span> Griffiths</td></tr>
-<tr class="myrow"><th rowspan="2">Mon Nov 30, 2026</th><td class="time">6:30</td><td class="mine">McCardle <span class="vs">vs</span> Sons of Icarus</td><td>MacDonald <span class="vs">vs</span> Frizzell</td><td>Forrest <span class="vs">vs</span> Griffiths</td><td>Wood <span class="vs">vs</span> Eagan</td></tr>
+<tr data-date="2026-11-30" class="myrow"><th rowspan="2">Mon Nov 30, 2026</th><td class="time">6:30</td><td class="mine">McCardle <span class="vs">vs</span> Sons of Icarus</td><td>MacDonald <span class="vs">vs</span> Frizzell</td><td>Forrest <span class="vs">vs</span> Griffiths</td><td>Wood <span class="vs">vs</span> Eagan</td></tr>
 <tr><td class="time">8:15</td><td>Ferguson <span class="vs">vs</span> Arsenault</td><td>Baglole <span class="vs">vs</span> MacFadyen</td><td>Stewart <span class="vs">vs</span> Foster</td><td>Kennedy <span class="vs">vs</span> Rock Bottom</td></tr>
-<tr><th rowspan="2">Mon Dec 7, 2026</th><td class="time">6:30</td><td>MacFadyen <span class="vs">vs</span> Foster</td><td>Rock Bottom <span class="vs">vs</span> Arsenault</td><td>Baglole <span class="vs">vs</span> Frizzell</td><td>Ferguson <span class="vs">vs</span> Griffiths</td></tr>
+<tr data-date="2026-12-07"><th rowspan="2">Mon Dec 7, 2026</th><td class="time">6:30</td><td>MacFadyen <span class="vs">vs</span> Foster</td><td>Rock Bottom <span class="vs">vs</span> Arsenault</td><td>Baglole <span class="vs">vs</span> Frizzell</td><td>Ferguson <span class="vs">vs</span> Griffiths</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>Kennedy <span class="vs">vs</span> Eagan</td><td>McCardle <span class="vs">vs</span> Stewart</td><td>Wood <span class="vs">vs</span> MacDonald</td><td class="mine">Forrest <span class="vs">vs</span> Sons of Icarus</td></tr>
-<tr class="myrow"><th rowspan="2">Mon Dec 14, 2026</th><td class="time">6:30</td><td>Forrest <span class="vs">vs</span> Stewart</td><td class="mine">Ferguson <span class="vs">vs</span> Sons of Icarus</td><td>Rock Bottom <span class="vs">vs</span> Eagan</td><td>Kennedy <span class="vs">vs</span> MacDonald</td></tr>
+<tr data-date="2026-12-14" class="myrow"><th rowspan="2">Mon Dec 14, 2026</th><td class="time">6:30</td><td>Forrest <span class="vs">vs</span> Stewart</td><td class="mine">Ferguson <span class="vs">vs</span> Sons of Icarus</td><td>Rock Bottom <span class="vs">vs</span> Eagan</td><td>Kennedy <span class="vs">vs</span> MacDonald</td></tr>
 <tr><td class="time">8:15</td><td>Griffiths <span class="vs">vs</span> Arsenault</td><td>Wood <span class="vs">vs</span> Baglole</td><td>McCardle <span class="vs">vs</span> MacFadyen</td><td>Foster <span class="vs">vs</span> Frizzell</td></tr>
-<tr><th rowspan="2">Mon Dec 21, 2026</th><td class="time">6:30</td><td>Kennedy <span class="vs">vs</span> Baglole</td><td>McCardle <span class="vs">vs</span> Frizzell</td><td>Ferguson <span class="vs">vs</span> Stewart</td><td>Forrest <span class="vs">vs</span> MacFadyen</td></tr>
+<tr data-date="2026-12-21"><th rowspan="2">Mon Dec 21, 2026</th><td class="time">6:30</td><td>Kennedy <span class="vs">vs</span> Baglole</td><td>McCardle <span class="vs">vs</span> Frizzell</td><td>Ferguson <span class="vs">vs</span> Stewart</td><td>Forrest <span class="vs">vs</span> MacFadyen</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>Rock Bottom <span class="vs">vs</span> MacDonald</td><td>Eagan <span class="vs">vs</span> Arsenault</td><td>Wood <span class="vs">vs</span> Foster</td><td class="mine">Griffiths <span class="vs">vs</span> Sons of Icarus</td></tr>
-<tr class="myrow"><th rowspan="2">Mon Jan 4, 2027</th><td class="time">6:30</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Arsenault</td><td>Griffiths <span class="vs">vs</span> Stewart</td><td>Eagan <span class="vs">vs</span> MacDonald</td><td>McCardle <span class="vs">vs</span> Wood</td></tr>
+<tr data-date="2027-01-04" class="myrow"><th rowspan="2">Mon Jan 4, 2027</th><td class="time">6:30</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Arsenault</td><td>Griffiths <span class="vs">vs</span> Stewart</td><td>Eagan <span class="vs">vs</span> MacDonald</td><td>McCardle <span class="vs">vs</span> Wood</td></tr>
 <tr><td class="time">8:15</td><td>Ferguson <span class="vs">vs</span> MacFadyen</td><td>Kennedy <span class="vs">vs</span> Foster</td><td>Forrest <span class="vs">vs</span> Frizzell</td><td>Rock Bottom <span class="vs">vs</span> Baglole</td></tr>
-<tr><th rowspan="2">Mon Jan 11, 2027</th><td class="time">6:30</td><td>Rock Bottom <span class="vs">vs</span> Foster</td><td>Eagan <span class="vs">vs</span> Baglole</td><td>Griffiths <span class="vs">vs</span> MacFadyen</td><td>Ferguson <span class="vs">vs</span> Frizzell</td></tr>
+<tr data-date="2027-01-11"><th rowspan="2">Mon Jan 11, 2027</th><td class="time">6:30</td><td>Rock Bottom <span class="vs">vs</span> Foster</td><td>Eagan <span class="vs">vs</span> Baglole</td><td>Griffiths <span class="vs">vs</span> MacFadyen</td><td>Ferguson <span class="vs">vs</span> Frizzell</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>McCardle <span class="vs">vs</span> Kennedy</td><td>Wood <span class="vs">vs</span> Forrest</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Stewart</td><td>MacDonald <span class="vs">vs</span> Arsenault</td></tr>
-<tr class="myrow"><th rowspan="2">Mon Jan 18, 2027</th><td class="time">6:30</td><td>Stewart <span class="vs">vs</span> Arsenault</td><td class="mine">Sons of Icarus <span class="vs">vs</span> MacFadyen</td><td>MacDonald <span class="vs">vs</span> Baglole</td><td>Forrest <span class="vs">vs</span> Kennedy</td></tr>
+<tr data-date="2027-01-18" class="myrow"><th rowspan="2">Mon Jan 18, 2027</th><td class="time">6:30</td><td>Stewart <span class="vs">vs</span> Arsenault</td><td class="mine">Sons of Icarus <span class="vs">vs</span> MacFadyen</td><td>MacDonald <span class="vs">vs</span> Baglole</td><td>Forrest <span class="vs">vs</span> Kennedy</td></tr>
 <tr><td class="time">8:15</td><td>Griffiths <span class="vs">vs</span> Frizzell</td><td>McCardle <span class="vs">vs</span> Rock Bottom</td><td>Wood <span class="vs">vs</span> Ferguson</td><td>Eagan <span class="vs">vs</span> Foster</td></tr>
-<tr><th rowspan="2">Mon Jan 25, 2027</th><td class="time">6:30</td><td>Forrest <span class="vs">vs</span> Rock Bottom</td><td>Kennedy <span class="vs">vs</span> Ferguson</td><td>McCardle <span class="vs">vs</span> Eagan</td><td>Baglole <span class="vs">vs</span> Arsenault</td></tr>
+<tr data-date="2027-01-25"><th rowspan="2">Mon Jan 25, 2027</th><td class="time">6:30</td><td>Forrest <span class="vs">vs</span> Rock Bottom</td><td>Kennedy <span class="vs">vs</span> Ferguson</td><td>McCardle <span class="vs">vs</span> Eagan</td><td>Baglole <span class="vs">vs</span> Arsenault</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>MacDonald <span class="vs">vs</span> Foster</td><td>Wood <span class="vs">vs</span> Griffiths</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Frizzell</td><td>Stewart <span class="vs">vs</span> MacFadyen</td></tr>
-<tr class="myrow"><th rowspan="2">Mon Feb 1, 2027</th><td class="time">6:30</td><td class="mine">Wood <span class="vs">vs</span> Sons of Icarus</td><td>Forrest <span class="vs">vs</span> Eagan</td><td>Kennedy <span class="vs">vs</span> Griffiths</td><td>McCardle <span class="vs">vs</span> MacDonald</td></tr>
+<tr data-date="2027-02-01" class="myrow"><th rowspan="2">Mon Feb 1, 2027</th><td class="time">6:30</td><td class="mine">Wood <span class="vs">vs</span> Sons of Icarus</td><td>Forrest <span class="vs">vs</span> Eagan</td><td>Kennedy <span class="vs">vs</span> Griffiths</td><td>McCardle <span class="vs">vs</span> MacDonald</td></tr>
 <tr><td class="time">8:15</td><td>Stewart <span class="vs">vs</span> Frizzell</td><td>Baglole <span class="vs">vs</span> Foster</td><td>MacFadyen <span class="vs">vs</span> Arsenault</td><td>Ferguson <span class="vs">vs</span> Rock Bottom</td></tr>
-<tr><th rowspan="2">Mon Feb 8, 2027</th><td class="time">6:30</td><td>Rock Bottom <span class="vs">vs</span> Griffiths</td><td>MacFadyen <span class="vs">vs</span> Frizzell</td><td>Ferguson <span class="vs">vs</span> Eagan</td><td>Foster <span class="vs">vs</span> Arsenault</td></tr>
+<tr data-date="2027-02-08"><th rowspan="2">Mon Feb 8, 2027</th><td class="time">6:30</td><td>Rock Bottom <span class="vs">vs</span> Griffiths</td><td>MacFadyen <span class="vs">vs</span> Frizzell</td><td>Ferguson <span class="vs">vs</span> Eagan</td><td>Foster <span class="vs">vs</span> Arsenault</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>Forrest <span class="vs">vs</span> MacDonald</td><td class="mine">Kennedy <span class="vs">vs</span> Sons of Icarus</td><td>McCardle <span class="vs">vs</span> Baglole</td><td>Wood <span class="vs">vs</span> Stewart</td></tr>
-<tr><th rowspan="2">Mon Feb 15, 2027</th><td class="time">6:30</td><td>Frizzell <span class="vs">vs</span> Arsenault</td><td>McCardle <span class="vs">vs</span> Foster</td><td>Kennedy <span class="vs">vs</span> Stewart</td><td>Forrest <span class="vs">vs</span> Baglole</td></tr>
+<tr data-date="2027-02-15"><th rowspan="2">Mon Feb 15, 2027</th><td class="time">6:30</td><td>Frizzell <span class="vs">vs</span> Arsenault</td><td>McCardle <span class="vs">vs</span> Foster</td><td>Kennedy <span class="vs">vs</span> Stewart</td><td>Forrest <span class="vs">vs</span> Baglole</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>Wood <span class="vs">vs</span> MacFadyen</td><td>Ferguson <span class="vs">vs</span> MacDonald</td><td class="mine">Rock Bottom <span class="vs">vs</span> Sons of Icarus</td><td>Griffiths <span class="vs">vs</span> Eagan</td></tr>
-<tr class="tbd"><th rowspan="2">Mon Feb 22, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
-<tr class="tbd"><th rowspan="2">Mon Mar 1, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
-<tr class="tbd"><th rowspan="2">Mon Mar 8, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
-<tr class="tbd"><th rowspan="2">Mon Mar 15, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
-<tr class="tbd"><th rowspan="2">Mon Mar 22, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
-<tr class="tbd"><th rowspan="2">Mon Mar 29, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
-<tr class="tbd"><th rowspan="2">Mon Apr 5, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
+<tr data-date="2027-02-22" class="tbd"><th rowspan="2">Mon Feb 22, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
+<tr data-date="2027-03-01" class="tbd"><th rowspan="2">Mon Mar 1, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
+<tr data-date="2027-03-08" class="tbd"><th rowspan="2">Mon Mar 8, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
+<tr data-date="2027-03-15" class="tbd"><th rowspan="2">Mon Mar 15, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
+<tr data-date="2027-03-22" class="tbd"><th rowspan="2">Mon Mar 22, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
+<tr data-date="2027-03-29" class="tbd"><th rowspan="2">Mon Mar 29, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
+<tr data-date="2027-04-05" class="tbd"><th rowspan="2">Mon Apr 5, 2027</th><td class="time">6:30</td><td colspan="4">TBD</td></tr><tr class="tbd"><td class="time">8:15</td><td colspan="4">TBD</td></tr>
 </tbody>
 </table>
+<script>
+  const rows = Array.from(document.querySelectorAll("tr[data-date]"));
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const next = rows.find(tr => new Date(tr.dataset.date + "T00:00:00") >= today);
+  if (next) {
+    next.classList.add("next");
+    if (next.nextElementSibling && next.nextElementSibling.tagName === "TR") {
+      next.nextElementSibling.classList.add("next");
+    }
+    const badge = document.createElement("span");
+    badge.className = "next-badge";
+    badge.textContent = "NEXT";
+    next.querySelector("th").appendChild(badge);
+  }
+</script>
 </body>
 </html>
 
