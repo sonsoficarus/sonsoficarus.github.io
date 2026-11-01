@@ -19,6 +19,11 @@
              margin-top: 0.35rem; color: #c3ccd6; font-size: 0.95rem; flex-wrap: wrap; }
   .opp { font-weight: 600; color: #eaf2fa; }
   .vs { color: #6b7683; font-size: 0.8em; }
+  li.next { border-color: #e6a800; border-left-color: #e6a800; background: #2a2415; }
+  .next-badge { display: inline-block; background: #7a5c00; color: #fff;
+                border: 1px solid #e6a800; border-radius: 4px;
+                font-size: 0.7rem; font-weight: 700; padding: 1px 6px;
+                margin-left: 6px; vertical-align: middle; }
 </style>
 </head>
 <body>
@@ -26,36 +31,49 @@
 <h1>Sons of Icarus &mdash; Game Schedule</h1>
 <p class="sub">Monday Night &bull; Nov 2, 2026 &ndash; Apr 5, 2027</p>
 <ul>
-  <li><div class="date">Mon Nov 2, 2026</div>
+  <li data-date="2026-11-02"><div class="date">Mon Nov 2, 2026</div>
     <div class="details"><span>8:15 &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Eagan</span></div></li>
-  <li><div class="date">Mon Nov 9, 2026</div>
+  <li data-date="2026-11-09"><div class="date">Mon Nov 9, 2026</div>
     <div class="details"><span>6:30 &bull; Ice 4</span><span class="opp"><span class="vs">vs</span> MacDonald</span></div></li>
-  <li><div class="date">Mon Nov 16, 2026</div>
+  <li data-date="2026-11-16"><div class="date">Mon Nov 16, 2026</div>
     <div class="details"><span>8:15 &bull; Ice 3</span><span class="opp"><span class="vs">vs</span> Baglole</span></div></li>
-  <li><div class="date">Mon Nov 23, 2026</div>
+  <li data-date="2026-11-23"><div class="date">Mon Nov 23, 2026</div>
     <div class="details"><span>6:30 &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Foster</span></div></li>
-  <li><div class="date">Mon Nov 30, 2026</div>
+  <li data-date="2026-11-30"><div class="date">Mon Nov 30, 2026</div>
     <div class="details"><span>6:30 &bull; Ice 1</span><span class="opp"><span class="vs">vs</span> McCardle</span></div></li>
-  <li><div class="date">Mon Dec 7, 2026</div>
+  <li data-date="2026-12-07"><div class="date">Mon Dec 7, 2026</div>
     <div class="details"><span>8:15 &bull; Ice 4</span><span class="opp"><span class="vs">vs</span> Forrest</span></div></li>
-  <li><div class="date">Mon Dec 14, 2026</div>
+  <li data-date="2026-12-14"><div class="date">Mon Dec 14, 2026</div>
     <div class="details"><span>6:30 &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Ferguson</span></div></li>
-  <li><div class="date">Mon Dec 21, 2026</div>
+  <li data-date="2026-12-21"><div class="date">Mon Dec 21, 2026</div>
     <div class="details"><span>8:15 &bull; Ice 4</span><span class="opp"><span class="vs">vs</span> Griffiths</span></div></li>
-  <li><div class="date">Mon Jan 4, 2027</div>
+  <li data-date="2027-01-04"><div class="date">Mon Jan 4, 2027</div>
     <div class="details"><span>6:30 &bull; Ice 1</span><span class="opp"><span class="vs">vs</span> Arsenault</span></div></li>
-  <li><div class="date">Mon Jan 11, 2027</div>
+  <li data-date="2027-01-11"><div class="date">Mon Jan 11, 2027</div>
     <div class="details"><span>8:15 &bull; Ice 3</span><span class="opp"><span class="vs">vs</span> Stewart</span></div></li>
-  <li><div class="date">Mon Jan 18, 2027</div>
+  <li data-date="2027-01-18"><div class="date">Mon Jan 18, 2027</div>
     <div class="details"><span>6:30 &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> MacFadyen</span></div></li>
-  <li><div class="date">Mon Jan 25, 2027</div>
+  <li data-date="2027-01-25"><div class="date">Mon Jan 25, 2027</div>
     <div class="details"><span>8:15 &bull; Ice 3</span><span class="opp"><span class="vs">vs</span> Frizzell</span></div></li>
-  <li><div class="date">Mon Feb 1, 2027</div>
+  <li data-date="2027-02-01"><div class="date">Mon Feb 1, 2027</div>
     <div class="details"><span>6:30 &bull; Ice 1</span><span class="opp"><span class="vs">vs</span> Wood</span></div></li>
-  <li><div class="date">Mon Feb 8, 2027</div>
+  <li data-date="2027-02-08"><div class="date">Mon Feb 8, 2027</div>
     <div class="details"><span>8:15 &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Kennedy</span></div></li>
-  <li><div class="date">Mon Feb 15, 2027</div>
+  <li data-date="2027-02-15"><div class="date">Mon Feb 15, 2027</div>
     <div class="details"><span>8:15 &bull; Ice 3</span><span class="opp"><span class="vs">vs</span> Rock Bottom</span></div></li>
 </ul>
+<script>
+  const items = Array.from(document.querySelectorAll("li[data-date]"));
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const next = items.find(li => new Date(li.dataset.date + "T00:00:00") >= today);
+  if (next) {
+    next.classList.add("next");
+    const badge = document.createElement("span");
+    badge.className = "next-badge";
+    badge.textContent = "NEXT GAME";
+    next.querySelector(".date").appendChild(badge);
+  }
+</script>
 </body>
 </html>
