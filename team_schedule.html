@@ -74,6 +74,12 @@
     badge.textContent = "NEXT GAME";
     next.querySelector(".date").appendChild(badge);
   }
+  for (const li of items) {
+    const info = li.querySelector(".details span");
+    if (info && /Ice [14]/.test(info.textContent)) {
+      li.querySelector(".date").appendChild(document.createTextNode(" \u{1F37A}"));
+    }
+  }
 </script>
 </body>
 </html>

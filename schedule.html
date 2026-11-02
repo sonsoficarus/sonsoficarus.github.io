@@ -91,6 +91,20 @@
     badge.textContent = "NEXT";
     next.querySelector("th").appendChild(badge);
   }
+  for (const tr of rows) {
+    const dateTh = tr.querySelector("th");
+    for (const row of [tr, tr.nextElementSibling]) {
+      if (!row || row.tagName !== "TR") continue;
+      const mine = row.querySelector("td.mine");
+      if (!mine) continue;
+      const idx = Array.prototype.indexOf.call(row.cells, mine);
+      const off = row.querySelector("th") ? 2 : 1;
+      if (idx === off || idx === off + 3) {
+        dateTh.appendChild(document.createTextNode(" \u{1F37A}"));
+        break;
+      }
+    }
+  }
 </script>
 </body>
 </html>
