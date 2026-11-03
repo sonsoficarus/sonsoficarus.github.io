@@ -10,6 +10,8 @@
   .nav a { color: #7fb3e0; font-weight: 600; }
   h1 { text-align: center; color: #a8d0f0; margin: 0.5rem 0 0.2rem; font-size: 1.4rem; }
   .sub { text-align: center; color: #8a97a5; margin: 0 0 1.2rem; font-size: 0.9rem; }
+  .dl { text-align: center; margin: -0.6rem 0 1.2rem; }
+  .dl a { color: #7fb3e0; font-weight: 600; font-size: 0.9rem; }
   ul { list-style: none; margin: 0 auto; padding: 0; max-width: 420px; }
   li { background: #1a222c; border: 1px solid #323d4a; border-left: 6px solid #24344a;
        border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.5);
@@ -30,11 +32,14 @@
 <p class="nav"><a href="schedule.html">&larr; Full league schedule</a></p>
 <h1>Sons of Icarus &mdash; Game Schedule</h1>
 <p class="sub">Monday Night &bull; Nov 2, 2026 &ndash; Apr 5, 2027</p>
+<p class="dl"><a id="ics-link" href="#" download="sons-of-icarus-schedule.ics">Download calendar (.ics)</a></p>
 <ul>
   <li data-date="2026-11-02"><div class="date">Mon Nov 2, 2026</div>
     <div class="details"><span>8:15 &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Eagan</span></div></li>
   <li data-date="2026-11-09"><div class="date">Mon Nov 9, 2026</div>
     <div class="details"><span>6:30 &bull; Ice 4</span><span class="opp"><span class="vs">vs</span> MacDonald</span></div></li>
+  <li data-date="2026-11-13"><div class="date">Fri Nov 13 &amp; Sat Nov 14, 2026</div>
+    <div class="details"><span>Times TBD</span><span class="opp">4th Annual Ruth Walsh Dream Spiel</span></div></li>
   <li data-date="2026-11-16"><div class="date">Mon Nov 16, 2026</div>
     <div class="details"><span>8:15 &bull; Ice 3</span><span class="opp"><span class="vs">vs</span> Baglole</span></div></li>
   <li data-date="2026-11-23"><div class="date">Mon Nov 23, 2026</div>
@@ -80,6 +85,46 @@
       li.querySelector(".date").appendChild(document.createTextNode(" \u{1F37A}"));
     }
   }
+  const pad2 = n => String(n).padStart(2, "0");
+  const icsEscape = s => s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+  function buildIcs() {
+    const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+    const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//sonsoficarus.org//Schedule//EN", "CALSCALE:GREGORIAN"];
+    items.forEach(li => {
+      const date = li.dataset.date.replace(/-/g, "");
+      const infoEl = li.querySelector(".details span");
+      const info = infoEl ? infoEl.textContent : "";
+      const oppEl = li.querySelector(".opp");
+      const opp = oppEl ? oppEl.textContent.replace(/^vs\s*/, "").trim() : "";
+      const timeM = info.match(/^(\d{1,2}):(\d{2})/);
+      const summary = oppEl && oppEl.querySelector(".vs") ? "Sons of Icarus vs " + opp : opp;
+      lines.push("BEGIN:VEVENT", "UID:soi-" + date + "@sonsoficarus.org", "DTSTAMP:" + stamp, "SUMMARY:" + icsEscape(summary));
+      const loc = info.match(/Ice\s*(\S+)/);
+      if (loc) lines.push("LOCATION:Ice " + loc[1]);
+      if (timeM) {
+        const start = (parseInt(timeM[1], 10) + 12) * 60 + parseInt(timeM[2], 10);
+        const end = start + 90;
+        lines.push("DTSTART:" + date + "T" + pad2(Math.floor(start / 60) % 24) + pad2(start % 60) + "00",
+                   "DTEND:" + date + "T" + pad2(Math.floor(end / 60) % 24) + pad2(end % 60) + "00");
+      } else {
+        lines.push("DTSTART;VALUE=DATE:" + date);
+      }
+      lines.push("END:VEVENT");
+    });
+    lines.push("END:VCALENDAR");
+    return lines.join("\r\n");
+  }
+  document.getElementById("ics-link").addEventListener("click", function (e) {
+    e.preventDefault();
+    const blob = new Blob([buildIcs()], { type: "text/calendar" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = this.getAttribute("download");
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+  });
 </script>
 </body>
 </html>
