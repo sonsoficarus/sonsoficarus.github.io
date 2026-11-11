@@ -16,6 +16,7 @@
   tbody th { background: #212c38; font-weight: 600; white-space: nowrap; color: #d8dee6; }
   td.time { background: #1f2833; font-weight: 600; white-space: nowrap; }
   tr.tbd td { color: #6b7683; font-style: italic; }
+  tr.spiel td { color: #6b7683; font-style: italic; }
   tr.myrow td { background: #2a2a1a; }
   td.mine { background: #7a5c00 !important; color: #fff; font-weight: 700;
             outline: 2px solid #e6a800; outline-offset: -2px; }
@@ -41,7 +42,9 @@
 <tr class="myrow"><td class="time">8:15</td><td>Ferguson <span class="vs">vs</span> Baglole</td><td class="mine">Eagan <span class="vs">vs</span> Sons of Icarus</td><td>Griffiths <span class="vs">vs</span> MacDonald</td><td>Forrest <span class="vs">vs</span> Foster</td></tr>
 <tr data-date="2026-11-09" class="myrow"><th rowspan="2">Mon Nov 9, 2026</th><td class="time">6:30</td><td>Eagan <span class="vs">vs</span> Stewart</td><td>Griffiths <span class="vs">vs</span> Baglole</td><td>Rock Bottom <span class="vs">vs</span> MacFadyen</td><td class="mine">Sons of Icarus <span class="vs">vs</span> MacDonald</td></tr>
 <tr><td class="time">8:15</td><td>McCardle <span class="vs">vs</span> Forrest</td><td>Wood <span class="vs">vs</span> Arsenault</td><td>Kennedy <span class="vs">vs</span> Frizzell</td><td>Ferguson <span class="vs">vs</span> Foster</td></tr>
-<tr data-date="2026-11-13" class="tbd myrow"><th>Fri Nov 13 &amp; Sat Nov 14, 2026</th><td colspan="5">4th Annual Ruth Walsh Dream Spiel &mdash; times &amp; opposition TBD</td></tr>
+<tr data-date="2026-11-13" class="spiel myrow"><th>Fri Nov 13, 2026</th><td colspan="5">4th Annual Ruth Walsh Dream Spiel &mdash; late game &bull; times &amp; opposition TBD</td></tr>
+<tr data-date="2026-11-14" class="spiel myrow"><th>Sat Nov 14, 2026</th><td colspan="5">4th Annual Ruth Walsh Dream Spiel &mdash; early game &bull; times &amp; opposition TBD</td></tr>
+<tr data-date="2026-11-14" class="spiel myrow"><th>Sat Nov 14, 2026</th><td colspan="5">4th Annual Ruth Walsh Dream Spiel &mdash; late game &bull; times &amp; opposition TBD</td></tr>
 <tr data-date="2026-11-16"><th rowspan="2">Mon Nov 16, 2026</th><td class="time">6:30</td><td>Griffiths <span class="vs">vs</span> Foster</td><td>Rock Bottom <span class="vs">vs</span> Frizzell</td><td>McCardle <span class="vs">vs</span> Ferguson</td><td>Forrest <span class="vs">vs</span> Arsenault</td></tr>
 <tr class="myrow"><td class="time">8:15</td><td>Wood <span class="vs">vs</span> Kennedy</td><td>MacDonald <span class="vs">vs</span> Stewart</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Baglole</td><td>Eagan <span class="vs">vs</span> MacFadyen</td></tr>
 <tr data-date="2026-11-23" class="myrow"><th rowspan="2">Mon Nov 23, 2026</th><td class="time">6:30</td><td>MacDonald <span class="vs">vs</span> MacFadyen</td><td class="mine">Sons of Icarus <span class="vs">vs</span> Foster</td><td>Kennedy <span class="vs">vs</span> Arsenault</td><td>Stewart <span class="vs">vs</span> Baglole</td></tr>
@@ -79,9 +82,16 @@
 </table>
 <script>
   const rows = Array.from(document.querySelectorAll("tr[data-date]"));
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const next = rows.find(tr => new Date(tr.dataset.date + "T00:00:00") >= today);
+  const now = new Date();
+  const groupEnd = tr => {
+    const d = new Date(tr.dataset.date + "T00:00:00");
+    const later = (tr.nextElementSibling && tr.nextElementSibling.querySelector("td.time")) || tr.querySelector("td.time");
+    const m = later ? later.textContent.trim().match(/^(\d{1,2}):(\d{2})/) : null;
+    if (m) d.setHours(parseInt(m[1], 10) + 12, parseInt(m[2], 10) + 90, 0, 0);
+    else d.setHours(23, 59, 59, 999);
+    return d;
+  };
+  const next = rows.filter(tr => !tr.classList.contains("tbd")).find(tr => groupEnd(tr) >= now);
   if (next) {
     next.classList.add("next");
     if (next.nextElementSibling && next.nextElementSibling.tagName === "TR") {

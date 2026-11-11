@@ -38,8 +38,12 @@
     <div class="details"><span>8:15 &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Eagan</span></div></li>
   <li data-date="2026-11-09"><div class="date">Mon Nov 9, 2026</div>
     <div class="details"><span>6:30 &bull; Ice 4</span><span class="opp"><span class="vs">vs</span> MacDonald</span></div></li>
-  <li data-date="2026-11-13"><div class="date">Fri Nov 13 &amp; Sat Nov 14, 2026</div>
-    <div class="details"><span>Times TBD</span><span class="opp">4th Annual Ruth Walsh Dream Spiel</span></div></li>
+  <li data-date="2026-11-13" class="spiel"><div class="date">Fri Nov 13, 2026</div>
+    <div class="details"><span>Late game</span><span class="opp">4th Annual Ruth Walsh Dream Spiel</span></div></li>
+  <li data-date="2026-11-14" class="spiel"><div class="date">Sat Nov 14, 2026</div>
+    <div class="details"><span>Early game</span><span class="opp">4th Annual Ruth Walsh Dream Spiel</span></div></li>
+  <li data-date="2026-11-14" class="spiel"><div class="date">Sat Nov 14, 2026</div>
+    <div class="details"><span>Late game</span><span class="opp">4th Annual Ruth Walsh Dream Spiel</span></div></li>
   <li data-date="2026-11-16"><div class="date">Mon Nov 16, 2026</div>
     <div class="details"><span>8:15 &bull; Ice 3</span><span class="opp"><span class="vs">vs</span> Baglole</span></div></li>
   <li data-date="2026-11-23"><div class="date">Mon Nov 23, 2026</div>
@@ -69,9 +73,16 @@
 </ul>
 <script>
   const items = Array.from(document.querySelectorAll("li[data-date]"));
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const next = items.find(li => new Date(li.dataset.date + "T00:00:00") >= today);
+  const now = new Date();
+  const endOf = li => {
+    const d = new Date(li.dataset.date + "T00:00:00");
+    const info = li.querySelector(".details span");
+    const m = info ? info.textContent.match(/^(\d{1,2}):(\d{2})/) : null;
+    if (m) d.setHours(parseInt(m[1], 10) + 12, parseInt(m[2], 10) + 90, 0, 0);
+    else d.setHours(23, 59, 59, 999);
+    return d;
+  };
+  const next = items.filter(li => !li.classList.contains("tbd")).find(li => endOf(li) >= now);
   if (next) {
     next.classList.add("next");
     const badge = document.createElement("span");
@@ -97,8 +108,10 @@
       const oppEl = li.querySelector(".opp");
       const opp = oppEl ? oppEl.textContent.replace(/^vs\s*/, "").trim() : "";
       const timeM = info.match(/^(\d{1,2}):(\d{2})/);
-      const summary = oppEl && oppEl.querySelector(".vs") ? "Sons of Icarus vs " + opp : opp;
-      lines.push("BEGIN:VEVENT", "UID:soi-" + date + "@sonsoficarus.org", "DTSTAMP:" + stamp, "SUMMARY:" + icsEscape(summary));
+      const summary = oppEl && oppEl.querySelector(".vs") ? "Sons of Icarus vs " + opp
+        : (opp && !timeM ? opp + " (" + info.toLowerCase() + ")" : opp);
+      const uid = "soi-" + date + (timeM ? "" : "-" + info.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")) + "@sonsoficarus.org";
+      lines.push("BEGIN:VEVENT", "UID:" + uid, "DTSTAMP:" + stamp, "SUMMARY:" + icsEscape(summary));
       const loc = info.match(/Ice\s*(\S+)/);
       if (loc) lines.push("LOCATION:Ice " + loc[1]);
       if (timeM) {
