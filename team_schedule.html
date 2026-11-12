@@ -39,11 +39,11 @@
   <li data-date="2026-11-09"><div class="date">Mon Nov 9, 2026</div>
     <div class="details"><span>6:30 &bull; Ice 4</span><span class="opp"><span class="vs">vs</span> MacDonald</span></div></li>
   <li data-date="2026-11-13" class="spiel"><div class="date">Fri Nov 13, 2026</div>
-    <div class="details"><span>Late game</span><span class="opp">4th Annual Ruth Walsh Dream Spiel</span></div></li>
+    <div class="details"><span>Ruth Walsh Memorial Spiel &bull; 8:15pm &bull; Ice 1</span><span class="opp"><span class="vs">vs</span> Team Sheridan</span></div></li>
   <li data-date="2026-11-14" class="spiel"><div class="date">Sat Nov 14, 2026</div>
-    <div class="details"><span>Early game</span><span class="opp">4th Annual Ruth Walsh Dream Spiel</span></div></li>
+    <div class="details"><span>Ruth Walsh Memorial Spiel &bull; 10:45am &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Ruth's Reckless Renegades</span></div></li>
   <li data-date="2026-11-14" class="spiel"><div class="date">Sat Nov 14, 2026</div>
-    <div class="details"><span>Late game</span><span class="opp">4th Annual Ruth Walsh Dream Spiel</span></div></li>
+    <div class="details"><span>Ruth Walsh Memorial Spiel &bull; 3:00pm &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Team MacDonald</span></div></li>
   <li data-date="2026-11-16"><div class="date">Mon Nov 16, 2026</div>
     <div class="details"><span>8:15 &bull; Ice 3</span><span class="opp"><span class="vs">vs</span> Baglole</span></div></li>
   <li data-date="2026-11-23"><div class="date">Mon Nov 23, 2026</div>
@@ -74,11 +74,16 @@
 <script>
   const items = Array.from(document.querySelectorAll("li[data-date]"));
   const now = new Date();
+  const gameTime = s => {
+    const m = s.match(/(\d{1,2}):(\d{2})\s*([ap]m)?/i);
+    if (!m) return null;
+    return [parseInt(m[1], 10) % 12 + (m[3] ? (/pm/i.test(m[3]) ? 12 : 0) : 12), parseInt(m[2], 10)];
+  };
   const endOf = li => {
     const d = new Date(li.dataset.date + "T00:00:00");
     const info = li.querySelector(".details span");
-    const m = info ? info.textContent.match(/^(\d{1,2}):(\d{2})/) : null;
-    if (m) d.setHours(parseInt(m[1], 10) + 12, parseInt(m[2], 10) + 90, 0, 0);
+    const t = info ? gameTime(info.textContent) : null;
+    if (t) d.setHours(t[0], t[1] + 90, 0, 0);
     else d.setHours(23, 59, 59, 999);
     return d;
   };
@@ -107,15 +112,16 @@
       const info = infoEl ? infoEl.textContent : "";
       const oppEl = li.querySelector(".opp");
       const opp = oppEl ? oppEl.textContent.replace(/^vs\s*/, "").trim() : "";
-      const timeM = info.match(/^(\d{1,2}):(\d{2})/);
-      const summary = oppEl && oppEl.querySelector(".vs") ? "Sons of Icarus vs " + opp
-        : (opp && !timeM ? opp + " (" + info.toLowerCase() + ")" : opp);
-      const uid = "soi-" + date + (timeM ? "" : "-" + info.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")) + "@sonsoficarus.org";
+      const timeArr = gameTime(info);
+      let summary = oppEl && oppEl.querySelector(".vs") ? "Sons of Icarus vs " + opp : opp;
+      if (li.classList.contains("spiel") && summary) summary += " (Ruth Walsh Memorial Spiel)";
+      const slug = s => s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+      const uid = "soi-" + date + (li.classList.contains("spiel") ? "-spiel-" + slug(opp || info) : timeArr ? "" : "-" + slug(info)) + "@sonsoficarus.org";
       lines.push("BEGIN:VEVENT", "UID:" + uid, "DTSTAMP:" + stamp, "SUMMARY:" + icsEscape(summary));
       const loc = info.match(/Ice\s*(\S+)/);
       if (loc) lines.push("LOCATION:Ice " + loc[1]);
-      if (timeM) {
-        const start = (parseInt(timeM[1], 10) + 12) * 60 + parseInt(timeM[2], 10);
+      if (timeArr) {
+        const start = timeArr[0] * 60 + timeArr[1];
         const end = start + 90;
         lines.push("DTSTART:" + date + "T" + pad2(Math.floor(start / 60) % 24) + pad2(start % 60) + "00",
                    "DTEND:" + date + "T" + pad2(Math.floor(end / 60) % 24) + pad2(end % 60) + "00");
