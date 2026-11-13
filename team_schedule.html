@@ -9,8 +9,7 @@
   .nav { text-align: center; margin: 0 0 0.8rem; }
   .nav a { color: #7fb3e0; font-weight: 600; }
   h1 { text-align: center; color: #a8d0f0; margin: 0.5rem 0 0.2rem; font-size: 1.4rem; }
-  .sub { text-align: center; color: #8a97a5; margin: 0 0 1.2rem; font-size: 0.9rem; }
-  .dl { text-align: center; margin: -0.6rem 0 1.2rem; }
+  .dl { text-align: center; margin: 0 0 1.2rem; }
   .dl a { color: #7fb3e0; font-weight: 600; font-size: 0.9rem; }
   ul { list-style: none; margin: 0 auto; padding: 0; max-width: 420px; }
   li { background: #1a222c; border: 1px solid #323d4a; border-left: 6px solid #24344a;
@@ -21,6 +20,8 @@
              margin-top: 0.35rem; color: #c3ccd6; font-size: 0.95rem; flex-wrap: wrap; }
   .opp { font-weight: 600; color: #eaf2fa; margin-left: auto; text-align: right; }
   .vs { color: #6b7683; font-size: 0.8em; }
+  .gc { color: #7fb3e0; font-weight: 600; font-size: 0.8rem; text-decoration: none; }
+  .gc:hover { text-decoration: underline; }
   li.next { border-color: #e6a800; border-left-color: #e6a800; background: #2a2415; }
   .next-badge { display: inline-block; background: #7a5c00; color: #fff;
                 border: 1px solid #e6a800; border-radius: 4px;
@@ -31,7 +32,6 @@
 <body>
 <p class="nav"><a href="schedule.html">&larr; Full league schedule</a></p>
 <h1>Sons of Icarus &mdash; Game Schedule</h1>
-<p class="sub">Monday Night &bull; Nov 2, 2026 &ndash; Apr 5, 2027</p>
 <p class="dl"><a id="ics-link" href="#" download="sons-of-icarus-schedule.ics">Download calendar (.ics)</a></p>
 <ul>
   <li data-date="2026-11-02"><div class="date">Mon Nov 2, 2026</div>
@@ -103,6 +103,35 @@
   }
   const pad2 = n => String(n).padStart(2, "0");
   const icsEscape = s => s.replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\n/g, "\\n");
+  for (const li of items) {
+    const date = li.dataset.date.replace(/-/g, "");
+    const info = li.querySelector(".details span").textContent;
+    const oppEl = li.querySelector(".opp");
+    const opp = oppEl ? oppEl.textContent.replace(/^vs\s*/, "").trim() : "";
+    const t = gameTime(info);
+    let dates;
+    if (t) {
+      const s = t[0] * 60 + t[1];
+      const e = s + 90;
+      dates = date + "T" + pad2(Math.floor(s / 60)) + pad2(s % 60) + "00/" +
+              date + "T" + pad2(Math.floor(e / 60) % 24) + pad2(e % 60) + "00";
+    } else {
+      dates = date + "/" + date;
+    }
+    let text = oppEl && oppEl.querySelector(".vs") ? "Sons of Icarus vs " + opp : opp;
+    if (li.classList.contains("spiel") && text) text += " (Ruth Walsh Memorial Spiel)";
+    const params = new URLSearchParams({ action: "TEMPLATE", text, dates });
+    const loc = info.match(/Ice\s*(\S+)/);
+    if (loc) params.set("location", "Ice " + loc[1]);
+    const a = document.createElement("a");
+    a.className = "gc";
+    a.href = "https://calendar.google.com/calendar/render?" + params.toString();
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.title = "Add to Google Calendar";
+    a.textContent = "GCal";
+    li.querySelector(".details").appendChild(a);
+  }
   function buildIcs() {
     const stamp = new Date().toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
     const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//sonsoficarus.org//Schedule//EN", "CALSCALE:GREGORIAN"];
