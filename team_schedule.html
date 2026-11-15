@@ -1,39 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sons of Icarus Schedule</title>
-<style>
-  body { font-family: "Segoe UI", Arial, sans-serif; background: #10161d; color: #d8dee6; margin: 0; padding: 1rem; }
-  .nav { text-align: center; margin: 0 0 0.8rem; }
-  .nav a { color: #7fb3e0; font-weight: 600; }
-  h1 { text-align: center; color: #a8d0f0; margin: 0.5rem 0 0.2rem; font-size: 1.4rem; }
-  .dl { text-align: center; margin: 0 0 1.2rem; }
-  .dl a { color: #7fb3e0; font-weight: 600; font-size: 0.9rem; }
-  ul { list-style: none; margin: 0 auto; padding: 0; max-width: 420px; }
-  li { background: #1a222c; border: 1px solid #323d4a; border-left: 6px solid #24344a;
-       border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,.5);
-       margin-bottom: 0.8rem; padding: 0.7rem 0.9rem; }
-  .date { font-weight: 700; color: #a8d0f0; font-size: 1rem; }
-  .details { display: flex; justify-content: space-between; gap: 0.5rem;
-             margin-top: 0.35rem; color: #c3ccd6; font-size: 0.95rem; flex-wrap: wrap; }
-  .opp { font-weight: 600; color: #eaf2fa; margin-left: auto; text-align: right; }
-  .vs { color: #6b7683; font-size: 0.8em; }
-  .gc { color: #7fb3e0; font-weight: 600; font-size: 0.8rem; text-decoration: none; }
-  .gc:hover { text-decoration: underline; }
-  li.next { border-color: #e6a800; border-left-color: #e6a800; background: #2a2415; }
-  .next-badge { display: inline-block; background: #7a5c00; color: #fff;
-                border: 1px solid #e6a800; border-radius: 4px;
-                font-size: 0.7rem; font-weight: 700; padding: 1px 6px;
-                margin-left: 6px; vertical-align: middle; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sons of Icarus — Schedule</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .dl { text-align: center; margin: -28px 0 32px; }
+    .dl a { color: var(--gold); font-weight: 700; font-size: 14px; letter-spacing: 1px; text-transform: uppercase; }
+    .schedule { list-style: none; margin: 0 auto; padding: 0; max-width: 560px; }
+    .schedule li { background: var(--card); border: 1px solid var(--border);
+                   border-left: 3px solid var(--gold-dark); border-radius: 8px;
+                   margin-bottom: 14px; padding: 16px 20px; }
+    .schedule .date { font-weight: 700; color: var(--text); }
+    .schedule .details { display: flex; justify-content: space-between; gap: 8px;
+                         margin-top: 4px; color: var(--muted); font-size: 14px; flex-wrap: wrap; }
+    .schedule .opp { font-weight: 600; color: var(--text); margin-left: auto; text-align: right; }
+    .schedule .vs { color: var(--muted); font-size: 0.8em; }
+    .schedule .gc { color: var(--gold); font-weight: 700; font-size: 12px; text-decoration: none; }
+    .schedule .gc:hover { text-decoration: underline; }
+    .schedule li.next { border-color: var(--gold); border-left-color: var(--gold);
+                        background: linear-gradient(135deg, rgba(212, 164, 55, 0.45), var(--card)); }
+    .schedule .next-badge { display: inline-block; background: var(--gold); color: var(--bg);
+                            border-radius: 4px; font-size: 10px; font-weight: 700;
+                            letter-spacing: 1px; padding: 2px 8px; margin-left: 8px;
+                            vertical-align: middle; text-transform: uppercase; }
+  </style>
 </head>
 <body>
-<p class="nav"><a href="schedule.html">&larr; Full league schedule</a></p>
-<h1>Sons of Icarus &mdash; Game Schedule</h1>
-<p class="dl"><a id="ics-link" href="#" download="sons-of-icarus-schedule.ics">Download calendar (.ics)</a></p>
-<ul>
+
+  <div id="nav"></div>
+
+  <header class="hero">
+    <img class="logo" src="header-logo.png" alt="Sons of Icarus logo">
+    <h1>Game Schedule</h1>
+    <p class="tagline">Fly Close, Blaze of Glory</p>
+  </header>
+
+  <section id="schedule">
+    <div class="section-header">
+      <h2>Upcoming Games</h2>
+      <p class="section-intro">Where and when the wings take flight.</p>
+    </div>
+    <p class="dl"><a id="ics-link" href="#" download="sons-of-icarus-schedule.ics">Download calendar (.ics)</a></p>
+    <ul class="schedule">
   <li data-date="2026-11-02"><div class="date">Mon Nov 2, 2026</div>
     <div class="details"><span>8:15pm &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Eagan</span></div></li>
   <li data-date="2026-11-09"><div class="date">Mon Nov 9, 2026</div>
@@ -70,8 +81,14 @@
     <div class="details"><span>8:15pm &bull; Ice 2</span><span class="opp"><span class="vs">vs</span> Kennedy</span></div></li>
   <li data-date="2027-02-15"><div class="date">Mon Feb 15, 2027</div>
     <div class="details"><span>8:15pm &bull; Ice 3</span><span class="opp"><span class="vs">vs</span> Rock Bottom</span></div></li>
-</ul>
-<script>
+  </ul>
+  </section>
+
+  <div id="footer"></div>
+
+  <script src="scripts.js"></script>
+
+  <script>
   const items = Array.from(document.querySelectorAll("li[data-date]"));
   const now = new Date();
   const gameTime = s => {
